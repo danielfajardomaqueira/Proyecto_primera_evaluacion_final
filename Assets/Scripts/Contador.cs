@@ -16,16 +16,23 @@ public class Contador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Coins >= 30)
+        {
+            Debug.Log("GAME OVER");
+
+            Time.timeScale = 0;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject)
+        if (other.gameObject.name.Contains("coin"))
         {
             Coins++;
             
             Debug.Log($"Tienes {Coins} monedas.");
+            Destroy(other.gameObject); // destruye moneda
         }
+
     }
 }
